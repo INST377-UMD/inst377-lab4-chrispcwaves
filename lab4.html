@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<title>INST 377- Lab 4</title>
+        <link rel="stylesheet" href="lab4.css">
+	</head>
+	<body>
+        <h1>INST377 - Lab 4</h1>
+
+        <div class="section">
+            <form name="contactForm" onsubmit="return validate();">
+                <label>Name</label>
+                <input type="text" id="Name" required>
+                <input type="submit" value="Alert Me">
+
+            </form>
+        </div>
+
+        <div class="section">
+            <button type="button" id="changeBackgroundColor" onclick="changeBackgroundColor()">Change Color</button>
+        </div>
+
+        <div class="section">
+            <form name="text-testerForm">
+                <label>Test Texter: </label>
+                <input type="text" id="Test Texter">
+                <button type="button" onclick="texttester()">Validate Text</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <button type="button" id="AddText" onclick="AddText()">Add Text</button>
+        </div>
+
+        <script type="text/javascript">
+            function validate() {
+                const nameInput = document.getElementById("Name").value;
+
+                if (nameInput === "") {
+                    alert("Please enter your name.");
+                    return false;
+                } 
+
+                alert("Hi " + nameInput + "!");
+                return false; 
+            }
+
+            function changeBackgroundColor() {
+                console.log('Attempting to change background color, current color is: ', document.body.style.backgroundColor);
+                if (document.body.style.backgroundColor == 'green') {
+                    document.body.style.backgroundColor = 'blue';
+                } else {
+                    document.body.style.backgroundColor = 'green';
+                }
+                console.log('Successfully changed background color, new color is: ', document.body.style.backgroundColor);
+            }
+
+            function texttester() {
+                const text = document.getElementById('Test Texter').value; 
+                const validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+                if (validation.test(text)) {
+                    alert('Bye! Bye!');
+                } else {
+                    document.getElementById('Test Texter').value = '';
+                }
+            }
+
+            const pageTitle = document.querySelector('h1');
+            const addTextButton = document.getElementById('AddText');
+
+            addTextButton.addEventListener('click', function() {
+                pageTitle.textContent += ' Add Text';
+            });
+        </script>
+	</body>
+</html>
